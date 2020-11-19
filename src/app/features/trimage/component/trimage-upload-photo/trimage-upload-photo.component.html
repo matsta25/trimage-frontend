@@ -1,1 +1,13 @@
-<p>trimage-upload-photo works!</p>
+<div style="width: 300px">
+  <ngx-dropzone
+    multiple="false"
+    accept="image/*"
+    (change)="onSelect($event)">
+    <ngx-dropzone-label>Drop image or click to select from disc!</ngx-dropzone-label>
+    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+      <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+    </ngx-dropzone-image-preview>
+  </ngx-dropzone>
+</div>
+
+<button mat-raised-button color="accent" [disabled]="!uploadedWithSuccess">Accent</button>
