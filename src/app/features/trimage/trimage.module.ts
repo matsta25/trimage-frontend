@@ -6,10 +6,12 @@ import { TrimageUploadPhotoComponent } from './component/trimage-upload-photo/tr
 import {TrimageComponent} from "./trimage.component";
 import {NgxDropzoneModule} from "ngx-dropzone";
 import {SharedModule} from "../../shared/shared.module";
+import { TrimageSetParamsComponent } from './component/trimage-set-params/trimage-set-params.component';
+import { TrimageRenderComponent } from './component/trimage-render/trimage-render.component';
 
 
 @NgModule({
-  declarations: [TrimageComponent, TrimageUploadPhotoComponent],
+  declarations: [TrimageComponent, TrimageUploadPhotoComponent, TrimageSetParamsComponent, TrimageRenderComponent],
   imports: [
     CommonModule,
     TrimageRoutingModule,

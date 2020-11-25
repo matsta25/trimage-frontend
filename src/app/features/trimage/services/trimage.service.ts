@@ -5,10 +5,15 @@ import {environment} from "../../../../environments/environment";
 
 const TRIMAGE_API_ENDPOINT = '/trimage'
 
+const TRIMAGE_API_UPLOAD_PHOTO = '/upload-photo'
+const TRIMAGE_API_RENDER = '/render'
+
 @Injectable({
   providedIn: 'root',
 })
 export class TrimageService {
+
+  private _filename: string = null;
 
   constructor(private http: HttpClient) {
   }
@@ -16,6 +21,19 @@ export class TrimageService {
   public uploadFile(file: File): Observable<object> {
     const formData: FormData = new FormData();
     formData.append('image', file, file.name);
-    return this.http.post(`${environment.baseUrl}${TRIMAGE_API_ENDPOINT}`, formData);
+    return this.http.post(`${environment.baseUrl}${TRIMAGE_API_ENDPOINT}${TRIMAGE_API_UPLOAD_PHOTO}`, formData);
+  }
+
+  public render(fileName: string): Observable<object> {
+    return this.http.post(`${environment.baseUrl}${TRIMAGE_API_ENDPOINT}${TRIMAGE_API_RENDER}`, fileName);
+  }
+
+
+  get filename(): string {
+    return this._filename;
+  }
+
+  set filename(value: string) {
+    this._filename = value;
   }
 }

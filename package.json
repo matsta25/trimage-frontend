@@ -32,6 +32,8 @@
     "@ngrx/entity": "^10.0.0",
     "@ngrx/store": "^10.0.0",
     "@ngrx/store-devtools": "^10.0.0",
+    "bootstrap": "^4.5.3",
+    "jquery": "^3.5.1",
     "material-icons-font": "^2.0.0",
     "ngx-dropzone": "^2.2.2",
     "ngx-progressbar": "^6.0.2",

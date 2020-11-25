@@ -34,9 +34,10 @@ export class TrimageUploadPhotoComponent implements OnInit {
   }
 
   onUpload() {
-    this.trimageService.uploadFile(this.files[0]).subscribe(data => {
+    this.trimageService.uploadFile(this.files[0]).subscribe(response => {
       // do something, if upload success
-      console.log(data)
+      // @ts-ignore
+      this.trimageService.filename = response.data.filename
       this.uploadedWithSuccess = true;
     }, error => {
       console.log(error);
