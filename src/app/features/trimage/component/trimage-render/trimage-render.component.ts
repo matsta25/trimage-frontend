@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TrimageService} from "../../services/trimage.service";
-import { RxStompService } from '@stomp/ng2-stompjs';
+import {RxStompService} from '@stomp/ng2-stompjs';
 
 @Component({
   selector: 'app-trimage-render',
@@ -10,11 +10,13 @@ import { RxStompService } from '@stomp/ng2-stompjs';
 export class TrimageRenderComponent implements OnInit {
 
   public log: string = '';
+  public filename: string = null;
 
   constructor(
     private trimageService: TrimageService,
     private rxStompService: RxStompService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.trimageService.render(this.trimageService.filename).subscribe(response => {
@@ -24,10 +26,19 @@ export class TrimageRenderComponent implements OnInit {
       console.log(error);
     });
 
-    this.rxStompService.watch('/topic/chat').subscribe((message: any) => {
-      console.log(message)
-      if(message.body != null) {
-        this.log = message.body;
+    this.rxStompService.watch('/topic/trimage').subscribe((message: any) => {
+      if (message.body != null) {
+        const messageBody = JSON.parse(message.body);
+
+        if (messageBody.type === 'PROGRESS') {
+          this.log = messageBody.content;
+        }
+
+        if (messageBody.type === 'STATUS') {
+          if (messageBody.content === 'DONE') {
+            this.filename = this.trimageService.filename
+          }
+        }
       }
     });
   }

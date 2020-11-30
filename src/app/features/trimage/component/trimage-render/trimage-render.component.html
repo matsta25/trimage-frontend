@@ -1,5 +1,9 @@
-<p>trimage-render works!</p>
+<h2>3/3</h2>
 
-<div> {{ log }} %</div>
+<div> {{ log ? log + '%' : '' }} </div>
+
+<div *ngIf="filename !== null">
+  <img [src]="'http://localhost:8080/api/trimage/photos/output_' + filename" alt="">
+</div>
 
 <button [routerLink]="['/', 'trimage', 'upload-photo']" mat-raised-button color="accent">Try Again</button>
