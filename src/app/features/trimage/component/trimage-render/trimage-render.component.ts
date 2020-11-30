@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TrimageService} from "../../services/trimage.service";
+import { RxStompService } from '@stomp/ng2-stompjs';
 
 @Component({
   selector: 'app-trimage-render',
@@ -8,8 +9,11 @@ import {TrimageService} from "../../services/trimage.service";
 })
 export class TrimageRenderComponent implements OnInit {
 
+  public log: string = '';
+
   constructor(
-    private trimageService: TrimageService
+    private trimageService: TrimageService,
+    private rxStompService: RxStompService
   ) { }
 
   ngOnInit(): void {
@@ -18,6 +22,13 @@ export class TrimageRenderComponent implements OnInit {
       console.log(response)
     }, error => {
       console.log(error);
+    });
+
+    this.rxStompService.watch('/topic/chat').subscribe((message: any) => {
+      console.log(message)
+      if(message.body != null) {
+        this.log = message.body;
+      }
     });
   }
 }

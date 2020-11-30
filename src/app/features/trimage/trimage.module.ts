@@ -8,6 +8,8 @@ import {NgxDropzoneModule} from "ngx-dropzone";
 import {SharedModule} from "../../shared/shared.module";
 import { TrimageSetParamsComponent } from './component/trimage-set-params/trimage-set-params.component';
 import { TrimageRenderComponent } from './component/trimage-render/trimage-render.component';
+import {myRxStompConfig} from "./config/my-rx-stomp.config";
+import { InjectableRxStompConfig, rxStompServiceFactory, RxStompService } from '@stomp/ng2-stompjs';
 
 
 @NgModule({
@@ -17,6 +19,17 @@ import { TrimageRenderComponent } from './component/trimage-render/trimage-rende
     TrimageRoutingModule,
     SharedModule,
     NgxDropzoneModule
+  ],
+  providers: [
+    {
+      provide: InjectableRxStompConfig,
+      useValue: myRxStompConfig,
+    },
+    {
+      provide: RxStompService,
+      useFactory: rxStompServiceFactory,
+      deps: [InjectableRxStompConfig],
+    },
   ]
 })
 export class TrimageModule { }
