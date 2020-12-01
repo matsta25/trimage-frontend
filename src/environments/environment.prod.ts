@@ -2,5 +2,5 @@
 
 export const environment = {
   production: true,
-  baseUrl: 'https://trimage-backend.herokuapp.com/api/trimage'
+  baseUrl: 'https://trimage-backend.herokuapp.com/api'
 }
