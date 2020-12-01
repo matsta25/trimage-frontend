@@ -1,9 +1,19 @@
-<h2>3/3</h2>
+<div class="d-flex justify-content-center flex-column align-items-center">
+  <h2>Step 3/3</h2>
+  <p>
+    Results:
+  </p>
 
-<div> {{ log ? log + '%' : '' }} </div>
+  <div class="d-flex justify-content-center flex-column align-items-center">
+    <div class="pb-3"> {{ log ? log + ' %' : '' }} </div>
 
-<div *ngIf="filenamePath !== null">
-  <img [src]="filenamePath" alt="">
+    <div *ngIf="filenamePath !== null" class="d-flex justify-content-center flex-column align-items-center">
+      <img [src]="filenamePath" alt="" class="w-75 p-3">
+    </div>
+  </div>
+
+  <div>
+    <button [disabled]="filenamePath === null" (click)="onDownload()" mat-raised-button color="warn" class="mr-3">Download</button>
+    <button [routerLink]="['/', 'trimage', 'upload-photo']" mat-raised-button color="accent">Try Again</button>
+  </div>
 </div>
-
-<button [routerLink]="['/', 'trimage', 'upload-photo']" mat-raised-button color="accent">Try Again</button>

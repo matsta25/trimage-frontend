@@ -10,23 +10,16 @@ import {environment} from "../../../../../environments/environment";
 })
 export class TrimageRenderComponent implements OnInit {
 
-  public log: string = '';
+  public log: string = '0';
   public filenamePath: string = null;
 
   constructor(
     private trimageService: TrimageService,
-    private rxStompService: RxStompService
+    private rxStompService: RxStompService,
   ) {
   }
 
   ngOnInit(): void {
-    this.trimageService.render(this.trimageService.filename).subscribe(response => {
-      // do something, if upload success
-      console.log(response)
-    }, error => {
-      console.log(error);
-    });
-
     this.rxStompService.watch('/topic/trimage').subscribe((message: any) => {
       if (message.body != null) {
         const messageBody = JSON.parse(message.body);
@@ -42,5 +35,15 @@ export class TrimageRenderComponent implements OnInit {
         }
       }
     });
+  }
+
+  onDownload() {
+    const link = document.createElement('a');
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', this.filenamePath);
+    link.setAttribute('download', `image.png`);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
   }
 }

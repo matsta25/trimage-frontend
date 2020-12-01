@@ -10,6 +10,8 @@ import { TrimageSetParamsComponent } from './component/trimage-set-params/trimag
 import { TrimageRenderComponent } from './component/trimage-render/trimage-render.component';
 import {myRxStompConfig} from "./config/my-rx-stomp.config";
 import { InjectableRxStompConfig, rxStompServiceFactory, RxStompService } from '@stomp/ng2-stompjs';
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { InjectableRxStompConfig, rxStompServiceFactory, RxStompService } from '
     CommonModule,
     TrimageRoutingModule,
     SharedModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   providers: [
     {

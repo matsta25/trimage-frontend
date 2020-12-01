@@ -24,8 +24,8 @@ export class TrimageService {
     return this.http.post(`${environment.baseUrl}${TRIMAGE_API_ENDPOINT}${TRIMAGE_API_UPLOAD_PHOTO}`, formData);
   }
 
-  public render(fileName: string): Observable<object> {
-    return this.http.post(`${environment.baseUrl}${TRIMAGE_API_ENDPOINT}${TRIMAGE_API_RENDER}`, fileName);
+  public render(fileName: string, numberOfShapes: string, mode: string): Observable<object> {
+    return this.http.post(`${environment.baseUrl}${TRIMAGE_API_ENDPOINT}${TRIMAGE_API_RENDER}`, {fileName, numberOfShapes, mode});
   }
 
 

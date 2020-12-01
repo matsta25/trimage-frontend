@@ -10,7 +10,13 @@ import { HomeComponent } from './core/components/home/home.component'
 import { HeaderComponent } from './core/components/header/header.component'
 import { FooterComponent } from './core/components/footer/footer.component'
 import { NotificationPageComponent } from './core/components/notification-page/notification-page.component'
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+import {ReactiveFormsModule} from "@angular/forms";
 
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   declarations: [
@@ -33,6 +39,9 @@ import { NotificationPageComponent } from './core/components/notification-page/n
 
     // app routing
     AppRoutingModule,
+    ReactiveFormsModule,
+
+    LottieModule.forRoot({ player: playerFactory })
   ],
   providers: [],
   bootstrap: [AppComponent],
