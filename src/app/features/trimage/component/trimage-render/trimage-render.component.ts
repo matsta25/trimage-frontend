@@ -37,7 +37,7 @@ export class TrimageRenderComponent implements OnInit {
 
         if (messageBody.type === 'STATUS') {
           if (messageBody.content === 'DONE') {
-            this.filenamePath = environment + '/trimage/photos/output_' + this.trimageService.filename;
+            this.filenamePath = environment.baseUrl + '/trimage/photos/output_' + this.trimageService.filename;
           }
         }
       }
