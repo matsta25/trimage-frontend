@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TrimageService} from "../../services/trimage.service";
 import {RxStompService} from '@stomp/ng2-stompjs';
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-trimage-render',
@@ -10,7 +11,7 @@ import {RxStompService} from '@stomp/ng2-stompjs';
 export class TrimageRenderComponent implements OnInit {
 
   public log: string = '';
-  public filename: string = null;
+  public filenamePath: string = null;
 
   constructor(
     private trimageService: TrimageService,
@@ -36,7 +37,7 @@ export class TrimageRenderComponent implements OnInit {
 
         if (messageBody.type === 'STATUS') {
           if (messageBody.content === 'DONE') {
-            this.filename = this.trimageService.filename
+            this.filenamePath = environment + '/trimage/photos/output_' + this.trimageService.filename;
           }
         }
       }
